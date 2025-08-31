@@ -1,44 +1,37 @@
-# Contributing to AspGoat
-
-We welcome all contributions — from bug reports and code improvements to new labs and documentation.
-
 ### How to Contribute 🤝
-1. **Fork & Clone**
-   
-   ```git clone https://github.com/Soham7-dev/AspGoat.git```
-   
-   ```cd AspGoat```
 
-2. **Create a separate Branch**
-   
-   ```git checkout -b feature/add-graphql-lab```
+1.  **Fork & Clone**
 
-3. **Test locally before raising a PR (using both .NET SDK and Docker)**
+    ```git clone https://github.com/Soham7-dev/AspGoat.git```
+    ```cd AspGoat```
 
-   ```dotnet restore```
+2.  **Create a separate branch**
 
-   ```dotnet run```
+    ```git checkout -b feature/add-graphql-lab```
 
-   ```docker build -t aspgoat .```
+3.  **Test locally before raising a PR (using both .NET SDK and Docker)**
 
-   ```docker run --rm -p 8000:8000 aspgoat```
+    ```dotnet restore```
+    ```dotnet run```
+    ```docker build -t aspgoat .```
+    ```docker run --rm -p 8000:8000 aspgoat```
 
-4. **Make Your Changes like the included Labs**
+4.  **Make your changes, following the example of the included labs.**
 
-   - Keep code readable and commented
-   - For new labs, include both vulnerable code and secure fix
-  
-5. **Push your code to your branch**
+    * Keep code readable and commented.
+    * For new labs, include both vulnerable code and a secure fix.
 
-   ```git push origin feature/add-graphql-lab```
+5.  **Push your code to your branch.**
 
-6. **Finally open a Pull Request (PR) to the main branch**
+    ```git push origin feature/add-graphql-lab```
 
-7. **Reporting Bugs**
+6.  **Finally, open a Pull Request (PR) to the main branch.**
 
-   - Open an **Issue** with the **Bug** label
-   - Provide Reproduction Steps
-  
-8. **Recognition**
+7.  **Reporting Bugs**
 
-   **All contributors will be credited in the Contributors section 🥳**
+    * Open an **Issue** with the **Bug** label.
+    * Provide reproduction steps.
+
+8.  **Recognition**
+
+    **All contributors will be credited in the Contributors section 🥳.**

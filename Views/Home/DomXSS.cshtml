@@ -15,13 +15,11 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 DOM XSS Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Vulnerable Url Fragment</h2>
+            <h2>Vulnerable URL Fragment</h2>
             <a href="#helloworld" class="btn btn-primary">Click Here</a>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>DOM XSS.</strong></p>
@@ -47,7 +45,6 @@
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
         <div class="modal-content">
             <h3>🔍 Analyze the Code</h3>
@@ -58,19 +55,18 @@
         </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
         <div class="diff-content">
             <h3>✅ Secure Version</h3>
             <div class="diff-line removed">- document.getElementById("output").innerHTML = userInput;</div>
-            <div class="diff-line added">+ document.getElementById("output").innerText = userInput; // Output text instead of HTML</div>
+            <div class="diff-line added">+ document.getElementById("output").innerText = userInput; // Outputs text instead of HTML.</div>
             <br />
             <button onclick="closeDiffPopup()">Close</button>
         </div>
     </div>
 
     <script>
-        // Vulnerable sink
+        // Vulnerable sink.
         const userInput = decodeURIComponent(location.hash.slice(1)); 
         document.getElementById("output").innerHTML = userInput;
     </script>

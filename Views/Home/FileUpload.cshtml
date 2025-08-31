@@ -14,9 +14,8 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Malicious File Upload Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Can you Deface the Home Page of this Website with a cool hacker message 😈?</h2>
+            <h2>Can you deface the website's home page with a cool hacker message?</h2>
             <form asp-action="FileUpload" method="post" enctype="multipart/form-data" class="mb-3">
                 <input type="file" name="file" class="form-control" />
                 <button class="btn btn-primary">Upload</button>
@@ -24,11 +23,10 @@
 
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>File Overwrite.</strong></p>
-            <p>Your task is to find the line that causes this and fix it.</p>
+            <p>This page is vulnerable to <strong>File overwrite.</strong></p>
+            <p>Your task is to find and fix the line that is causing this vulnerability.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
     </div>
@@ -39,12 +37,12 @@
         <button class="btn btn-success">Reset</button>
     </div>
 
-    <h6 style="text-align: center; margin: 40px;">Note: The Reset feature is currently under development. If you have messed up the application while completing this challenge, please clone the app again from Github. Once defaced, you can copy the original content again from the Github repo. If you are using docker, stop and remove the container and start it again.</h6>
+    <h6 style="text-align: center; margin: 40px;">Note: The Reset feature is currently under development. If you have corrupted the application while completing this challenge, please clone the app again from GitHub. If you are using Docker, stop and remove the container, and start it again. Once defaced, you can copy the original content again from the GitHub repository.</h6>
 
     <h6 style="margin: 25px;">More Information:</h6>
     <ul>
         <li>
-            <a href="https://portswigger.net/web-security/file-upload">Portswigger - File Uplodad Vulnerabilities</a>
+            <a href="https://portswigger.net/web-security/file-upload">Portswigger - File Upload Vulnerabilities</a>
         </li>
         <li>
             <a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">OWASP - Unrestricted File Upload</a>
@@ -53,7 +51,6 @@
             <a href="https://www.acunetix.com/vulnerabilities/web/unrestricted-file-upload/">Acunetix - Unrestricted File Upload</a>
         </li>
     </ul>
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -72,8 +69,7 @@
         </div>
         <div class="popup-line">
         <input id="vulnCheckbox" type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-        var filePath = Path.Combine(uploads, file.FileName); <!-- vulnerable -->
-        </div>
+        var filePath = Path.Combine(uploads, file.FileName); </div>
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
         using (var stream = new FileStream(filePath, FileMode.Create))
@@ -92,18 +88,15 @@
     </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
 
-        <!-- removed (bad) -->
         <div class="diff-line removed">- var filePath = Path.Combine(uploads, file.FileName);</div>
 
-        <!-- added (good) -->
-        <div class="diff-line added">+ // Strip the path traversal characters</div>
+        <div class="diff-line added">+ // Strips the path traversal characters.</div>
         <div class="diff-line added">+ var filePath = Path.Combine(uploads, Path.GetFileName(file.FileName));</div>
-        <div class="diff-line added">+ // Allow a whitelist of file extensions</div>
+        <div class="diff-line added">+ // Allows a whitelist of file extensions.</div>
         <div class="diff-line added">+ var ext = Path.GetExtension(Path.GetFileName(file.FileName));</div>
         <div class="diff-line added">+ var allowed = new[] { ".png", ".jpg", ".jpeg", ".gif", ".pdf" };</div>
         <div class="diff-line added">+ if (!allowed.Contains(ext, StringComparer.OrdinalIgnoreCase))</div>

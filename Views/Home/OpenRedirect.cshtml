@@ -14,7 +14,6 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Open Redirect Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
             <h2>
                 Follow me on LinkedIn :)
@@ -62,7 +61,7 @@
                 }
                 </style>
             </h2>
-            <h2>Follow me on Github :)
+            <h2>Follow me on GitHub.
             <a
             href="/Home/OpenRedirect?returnUrl=https://github.com/Soham7-dev"
             class="gh-btn"
@@ -107,10 +106,9 @@
             }
             </style>
 
-            </h2>          
+            </h2>           
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>Open Redirect.</strong></p>
@@ -132,7 +130,6 @@
         </li>
     </ul>
 
-    <!-- Code Modal (Open Redirect) -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -154,27 +151,27 @@
 
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-        <span>    if (returnUrl != null)</span>
+        <span>     if (returnUrl != null)</span>
         </div>
 
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
-        <span>    {</span>
+        <span>     {</span>
         </div>
 
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)">
-        <span>        return Redirect(returnUrl);</span>
+        <span>          return Redirect(returnUrl);</span>
         </div>
 
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)">
-        <span>    }</span>
+        <span>     }</span>
         </div>
 
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 8)">
-        <span>    return View();</span>
+        <span>     return View();</span>
         </div>
 
         <div class="popup-line">
@@ -187,25 +184,22 @@
     </div>
     </div>
 
-    <!-- Diff Modal (Secure Version) -->
     <div id="diffModal" class="diff-modal">
         <div class="diff-content">
             <h3>✅ Secure Version</h3>
 
-            <!-- Removed (vulnerable code) -->
             <div class="diff-line removed">- if (returnUrl != null)</div>
             <div class="diff-line removed">- {</div>
-            <div class="diff-line removed">-     return Redirect(returnUrl);</div>
+            <div class="diff-line removed">-      return Redirect(returnUrl);</div>
             <div class="diff-line removed">- }</div>
 
-            <!-- Added (new strict whitelist code) -->
-            <div class="diff-line added">+ // Create a whitelist of urls</div>
+            <div class="diff-line added">+ // Creates a whitelist of URLs.</div>
             <div class="diff-line added">+ var allowedUrls = new List&lt;string&gt;</div>
             <div class="diff-line added">+ {</div>
-            <div class="diff-line added">+     "https://www.linkedin.com/in/soham-das-/",</div>
-            <div class="diff-line added">+     "https://github.com/Soham7-dev"</div>
+            <div class="diff-line added">+      "https://www.linkedin.com/in/soham-das-/",</div>
+            <div class="diff-line added">+      "https://github.com/Soham7-dev"</div>
             <div class="diff-line added">+ };</div>
-            <div class="diff-line added">+ // Fallback to Home page if the returnUrl parameter doesn't match</div>
+            <div class="diff-line added">+ // Fallback to the home page if the returnUrl parameter does not match.</div>
             <div class="diff-line added">+ if (allowedUrls.Contains(returnUrl, StringComparer.OrdinalIgnoreCase))</div>
             <div class="diff-line added">+ return Redirect(returnUrl);</div>
             <div class="diff-line added">+ else</div>
@@ -219,3 +213,4 @@
     <script src="~/js/openre.js"></script>
 
 </body>
+</html>

@@ -67,7 +67,7 @@ public class HomeController : Controller
     {
         string ip = Request.Headers["X-Forwarded-For"].ToString();
 
-        if (String.IsNullOrEmpty(ip)) ip = "127.0.0.1";
+        if (string.IsNullOrEmpty(ip)) ip = "127.0.0.1";
 
         var _connString = _config.GetConnectionString("DefaultConnection");
 
@@ -227,7 +227,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Download(string file)
     {
-        // Vulnerable file concatination 
+        // Vulnerable file concatenation
         var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
 
         if (!System.IO.File.Exists(path))
@@ -269,18 +269,18 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CommandInjection(string domain)
     {
-        // Choose shell on the basis of OS
+        // Choose shell based on the operating system
         string shell, args;
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             shell = "cmd.exe";
-            // VULNERABLE: direct concatenation of user input into shell command
+            // Vulnerable: Direct concatenation of user input into shell command
             args = $"/c nslookup {domain}";
         }
         else
         {
             shell = "/bin/bash";
-            // VULNERABLE: direct concatenation of user input into shell command    
+            // Vulnerable: Direct concatenation of user input into shell command
             args = $"-c \"nslookup {domain}\"";
         }
 
@@ -314,7 +314,7 @@ public class HomeController : Controller
     {
         var json = body.GetRawText();
 
-        // Vulnerable code as TypeNameHandling.All let's attacker inject arbitrary objects of classes
+        // Vulnerable code as TypeNameHandling.All lets attackers inject arbitrary objects of classes
         var settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.All

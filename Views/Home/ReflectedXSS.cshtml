@@ -15,7 +15,6 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Reflected XSS Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
             <h2>Vulnerable Form</h2>
             <form method="GET">
@@ -27,7 +26,6 @@
             <h3>Search results for '@Html.Raw(ViewData["Query"])'</h3>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>Reflected XSS.</strong></p>
@@ -49,7 +47,6 @@
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
         <div class="modal-content">
             <h3>🔍 Analyze the Code</h3>
@@ -65,12 +62,11 @@
         </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
         <div class="diff-content">
             <h3>✅ Secure Version</h3>
             <div class="diff-line removed">- &lt;h3&gt;Search results for '@@Html.Raw(ViewData["Query"])'&lt;/h3&gt;</div>
-            <div class="diff-line added">+ // Encode the user input before rendering in Views</div>
+            <div class="diff-line added">+ // Encodes the user input before rendering in the view.</div>
             <div class="diff-line added">+ &lt;h3&gt;Search results for '@@Html.Encode(ViewData["Query"])'&lt;/h3&gt;</div>
             <br />
             <button onclick="closeDiffPopup()">Close</button>

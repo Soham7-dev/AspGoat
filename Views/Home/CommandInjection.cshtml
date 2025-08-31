@@ -14,9 +14,8 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Command Injection Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Enter a domain name (www.example.com) for DNS Lookup</h2>
+            <h2>Enter a domain name (www.example.com) for DNS Lookup.</h2>
             <form method="GET">
                 <label for="domain">Domain:</label>
                 <input type="text" name="domain" id="domain">
@@ -25,11 +24,10 @@
 
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>Remote Code Execution via Command Injection.</strong></p>
-            <p>Your task is to find the line that causes this and fix it.</p>
+            <p>Your task is to find and fix the line that is causing this vulnerability.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
     </div>
@@ -51,7 +49,6 @@
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -92,7 +89,6 @@
     </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version (.NET DNS API only)</h3>
