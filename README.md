@@ -2,10 +2,10 @@
   <img src="wwwroot/AspGoatLogo-Github.png" alt="AspGoat Logo" height="400" width="1000"/>
 </p>
 
-<h1 align="center">🐐 AspGoat</h1>
+<h1 align="center">AspGoat</h1>
 
 <p align="center">
-  <i>An intentionally vulnerable ASP.NET Core web application for learning and practicing Web Application Security.</i>
+  <i>An intentionally vulnerable ASP.NET Core web application for learning and practicing web application security.</i>
 </p>
 
 <p align="center">
@@ -30,93 +30,101 @@
 
 ## 📖 About AspGoat
 
-**AspGoat** is an intentionally vulnerable **ASP.NET Core** application that helps Security Engineers and Developers analyze and mitigate common web application vulnerabilities. 
-It includes the **OWASP Top 10** and beyond, providing hands-on Application Security challenges.
+**AspGoat** is an intentionally vulnerable **ASP.NET Core** application designed to help security engineers and developers analyze, exploit, and mitigate common web application vulnerabilities.  
+It includes labs covering the **OWASP Top 10** and additional scenarios, offering a practical way to learn secure coding.
 
-⚠️ **Disclaimer**: This project is for **educational purposes only**. Do **not** deploy to production environments.  
-
----
-
-# ✨ Features
-
-- 🐞 Intentionally vulnerable ASP.NET Core MVC app  
-- 📚 Hands-on labs for:
-  - **Cross-Site Scripting (XSS)**
-  - **Cross-Site Request Forgery (CSRF)**
-  - **SQL Injection (SQLi)**
-  - **XML External Entity (XXE)**
-  - **Local File Inclusion (LFI)**
-  - **Remote Code Execution (RCE)**
-  - **Unrestricted File Upload**
-  - **Information Disclosure**
-  - **Broken Authentication**
-  - **Server-Side Request Forgery (SSRF)**
-  - **Insecure Direct Object Reference (IDOR)**
-  - **Insecure Deserialization**
-  - **Command Injection**
-  - 🛡️ **Secure vs Insecure coding snippets**  
-  - 🐳 **Ready-to-run Docker setup**  
+⚠️ **Disclaimer**: This project is for **educational purposes only**. Do **not** deploy it in production environments.  
 
 ---
 
-# 🪛 Installation
+## ✨ Features
 
-### Using Docker (recommended)
-
-### Clone the repository
-
-```git clone https://github.com/Soham7-dev/AspGoat.git```
-
-```cd AspGoat```
-
-### Build the image
-
-```docker build -t aspgoat .```
-
-### Run the container
-
-```docker run --rm -p 8000:8000 aspgoat```
-
-### Access the app
-
-```http://localhost:8000```
-
+- Intentionally vulnerable ASP.NET Core MVC application  
+- Hands-on security labs covering:
+  - Cross-Site Scripting (**XSS**)
+  - Cross-Site Request Forgery (**CSRF**)
+  - SQL Injection (**SQLi**)
+  - XML External Entity (**XXE**)
+  - Local File Inclusion (**LFI**)
+  - Remote Code Execution (**RCE**)
+  - Unrestricted File Upload
+  - Information Disclosure
+  - Broken Authentication
+  - Server-Side Request Forgery (**SSRF**)
+  - Insecure Direct Object Reference (**IDOR**)
+  - Insecure Deserialization
+  - Command Injection
+- Secure vs. insecure code snippets for comparison  
+- Docker-ready for quick setup  
 
 ---
 
+## 🛠️ Installation
 
-### Using .NET SDK
+### Option 1: Using Docker (recommended)
 
-Download and install the **.NET SDK 8.0 (LTS)** from:  
-👉 [.NET-Download](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)  
+Clone the repository:
 
-*(The SDK includes the runtime, so this is all you need to build and run AspGoat from source.)*
+```bash
+git clone https://github.com/Soham7-dev/AspGoat.git
+cd AspGoat
+````
 
-### Clone the repository
+Build the image:
 
-```git clone https://github.com/Soham7-dev/AspGoat.git```
+```bash
+docker build -t aspgoat .
+```
 
-```cd AspGoat```
+Run the container:
 
-### Restore Dependencies
+```bash
+docker run --rm -p 8000:8000 aspgoat
+```
 
-```dotnet restore```
+Access the application at:
 
-### Run the app
-
-```dotnet run```
-
-### Access the app
-
-```http://localhost:5073```
-
+```
+http://localhost:8000
+```
 
 ---
 
+### Option 2: Using .NET SDK
+
+1. Install **.NET SDK 8.0 (LTS)**:
+   👉 [Download here](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+   *(The SDK includes the runtime, so no additional installation is needed.)*
+
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Soham7-dev/AspGoat.git
+   cd AspGoat
+   ```
+
+3. Restore dependencies:
+
+   ```bash
+   dotnet restore
+   ```
+
+4. Run the application:
+
+   ```bash
+   dotnet run
+   ```
+
+5. Access the application at:
+
+   ```
+   http://localhost:5073
+   ```
+
+---
 
 ## 👥 Contributors
-
-Thanks goes to these wonderful people ✨
 
 <a href="https://github.com/Soham7-dev/AspGoat/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Soham7-dev/AspGoat" />

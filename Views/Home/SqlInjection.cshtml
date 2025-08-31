@@ -1,6 +1,6 @@
 @model List<string>
 @{
-    ViewData["Title"] = "Sql Injection Demo";
+    ViewData["Title"] = "SQL Injection Demo";
 }
 
 <!DOCTYPE html>
@@ -12,41 +12,38 @@
 </head>
 <body>
 
-    <h1 style="text-align: center; margin-bottom: 40px;">🧪 Sql Injection Demo</h1>
+    <h1 style="text-align: center; margin-bottom: 40px;">🧪 SQL Injection Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
             <h2>Gone are the days of basic SQLi — it's time to check your headers.</h2>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Sql Injection.</strong></p>
-            <p>Your task is to find the line that causes this and fix it.</p>
+            <p>This page is vulnerable to <strong>SQL Injection.</strong></p>
+            <p>Your task is to find and fix the line that is causing this vulnerability.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
     </div>
 
     <div style="text-align: center; margin: 25px">
-        <h6>@ViewData["UserName"]'s last Login Ip is @ViewData["LastLoginIP"]</h6>
+        <h6>@ViewData["UserName"]'s last Login IP is @ViewData["LastLoginIP"]</h6>
     </div>
 
     <h6 style="margin: 25px;">More Information:</h6>
     <ul>
         <li>
-            <a href="https://owasp.org/www-community/attacks/SQL_Injection">OWASP - Sql Injection</a>
+            <a href="https://owasp.org/www-community/attacks/SQL_Injection">OWASP - SQL Injection</a>
         </li>
         <li>
-            <a href="https://portswigger.net/web-security/sql-injection">Portswigger - Sql Injection</a>
+            <a href="https://portswigger.net/web-security/sql-injection">Portswigger - SQL Injection</a>
         </li>
         <li>
-            <a href="https://www.acunetix.com/websitesecurity/sql-injection/">Acunetix - Sql Injection</a>
+            <a href="https://www.acunetix.com/websitesecurity/sql-injection/">Acunetix - SQL Injection</a>
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -56,7 +53,7 @@
         </div>
 
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
-        <span>if (String.IsNullOrEmpty(ip)) ip = "127.0.0.1";</span>
+        <span>if (string.IsNullOrEmpty(ip)) ip = "127.0.0.1";</span>
         </div>
 
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
@@ -73,7 +70,7 @@
 
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)">
         <span>using var cmd = new SqliteCommand(query, conn);</span>
-        </div7
+        </div>
 
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)">
         <span>using var reader = cmd.ExecuteReader();</span>
@@ -116,7 +113,6 @@
     </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
@@ -124,7 +120,7 @@
         <div class="diff-line removed">- string query = "SELECT * FROM Users " + "WHERE LastLoginIP = '" + ip + "'";</div>
         <div class="diff-line removed">- using var cmd = new SqliteCommand(query, conn);</div>
 
-        <div class="diff-line added">+ // Use parameterized queries</div>
+        <div class="diff-line added">+ // Uses parameterized queries.</div>
         <div class="diff-line added">+ string query = "SELECT * FROM Users WHERE LastLoginIP = @@ip";</div>
         <div class="diff-line added">+ using var cmd = new SqliteCommand(query, conn);</div>
         <div class="diff-line added">+ cmd.Parameters.AddWithValue("@@ip", ip);</div>

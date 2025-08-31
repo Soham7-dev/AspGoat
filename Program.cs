@@ -19,8 +19,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
         if (csrfLab)
         {
-            // CSRF lab → requires HTTPS in browsers
-            // Vulnerable as SamSiteMode.None allows both auth and anti-csrf cookies to be included in cross site request
+            // CSRF Lab → requires HTTPS in browsers.
+            // Vulnerable: SameSiteMode.None allows both auth and anti-CSRF cookies 
+            // to be included in cross-site requests.
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         }
@@ -36,14 +37,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     
 var app = builder.Build();
 
-// Seeding fresh data into the database
+// Seed fresh data into the database
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
     // Delete app.db if it already exists
     db.Database.EnsureDeleted();
-    // Create app.db and rebuild the entire Schema from scratch
+    // Create app.db and rebuild the entire schema from scratch
     db.Database.EnsureCreated();
 
     // Users
@@ -78,7 +79,7 @@ using (var scope = app.Services.CreateScope())
     );
     db.SaveChanges();
 
-    // EmailIds
+    // Email IDs
     db.EmailIds.Add(new EmailId
     {
         // Id will be 1 after reset
@@ -91,7 +92,8 @@ using (var scope = app.Services.CreateScope())
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // The default HSTS value is 30 days. You may want to change this for production scenarios.
+    // See: https://aka.ms/aspnetcore-hsts
     app.UseHsts();
 }
 

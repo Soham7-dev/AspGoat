@@ -16,17 +16,17 @@
     <div class="container">
         <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Can you convince AspGoat to open Calculator for you 🤔?</h2>
+            <h2>Can you convince AspGoat to open the Calculator for you 🤔?</h2>
             <button class="btn btn-primary" onclick="sendNormalPayload()">
-                Say Hi :)
+                Say Hi 🙂
             </button>
         </div>
 
         <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Remote Code Execution via Insecure Deserialization.</strong></p>
-            <p>Your task is to find the line that causes this and fix it.</p>
+            <p>This page is vulnerable to <strong>remote code execution via insecure deserialization.</strong></p>
+            <p>Your task is to identify the line that causes this issue and fix it.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
     </div>
@@ -36,7 +36,10 @@
     </div>
 
     <div style="text-align: center; margin-top: 25px">
-        <h6><strong>Note: </strong>using 'calc.exe' you can open the calculator app only in Windows based systems. In case of Linux or MacOS, the command will be different. For Docker, there might not be a calculator app pre-installed. If you can gain Remote Code Execution on any system, consider this challenge solved 👍.</h6>
+        <h6><strong>Note: </strong>Using <code>calc.exe</code> you can open the Calculator app only on Windows-based systems. 
+        On Linux or macOS, the command will be different. 
+        In Docker containers, there might not be a Calculator app pre-installed. 
+        If you can gain remote code execution on any system, consider this challenge solved 👍.</h6>
     </div>
 
     <!-- First Modal -->
@@ -94,7 +97,7 @@
 
             <br />
             <button onclick="closeDiffPopup()">Close</button>
-    </div>
+        </div>
     </div>
 
     <h6 style="margin: 25px;">More Information:</h6>
@@ -103,7 +106,7 @@
             <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326">Microsoft - Newtonsoft.Json.TypeNameHandling</a>
         </li>
         <li>
-            <a href="https://portswigger.net/web-security/deserialization">Portswigger - Insecure Deserialization</a>
+            <a href="https://portswigger.net/web-security/deserialization">PortSwigger - Insecure Deserialization</a>
         </li>
         <li>
             <a href="https://owasp.org/www-community/vulnerabilities/Insecure_Deserialization">OWASP - Insecure Deserialization</a>
@@ -112,18 +115,18 @@
 
     <script>
         function sendNormalPayload() {
-        const payload = JSON.stringify({ "Message": "Hello from AspGoat!" });
+            const payload = JSON.stringify({ "Message": "Hello from AspGoat!" });
 
-        fetch("/Home/InsecureDeserialization", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: payload
-        })
-        .then(r => r.json())
-        .then(d => {
-            document.getElementById("msg").textContent = d.message ?? "(null)";
-        })
-        .catch(err => console.error(err));
+            fetch("/Home/InsecureDeserialization", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            })
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById("msg").textContent = d.message ?? "(null)";
+            })
+            .catch(err => console.error(err));
         }
     </script>
 
