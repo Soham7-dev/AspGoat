@@ -228,6 +228,7 @@ public class HomeController : Controller
     public IActionResult Download(string file)
     {
         // Vulnerable file concatination 
+        var fileName = Path.GetFileName(file);
         var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
 
         if (!System.IO.File.Exists(path))
@@ -385,3 +386,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+

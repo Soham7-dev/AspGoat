@@ -46,34 +46,20 @@
     </ul>
 
     <!-- First Modal -->
-    <div id="codeModal" class="modal">
-        <div class="modal-content">
-            <h3>🔍 Analyze the Code</h3>
+<div id="codeModal" class="modal">
+    <div class="modal-content">
+        <h3>🔍 Secure Code</h3>
 
-            <div class="popup-line">
-            <input type="checkbox" class="code-checkbox" id="vulnCheckbox" onchange="checkVulnerability(this, 1)">
-            1) var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
-            </div>
+        <p>// Strip path traversal characters and safely load the file</p>
+        <pre>
+var fileName = Path.GetFileName(file);
+var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", fileName);
+        </pre>
 
-            <div class="popup-line">
-            <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
-            2) if (!System.IO.File.Exists(path)) { return NotFound("File not found"); }
-            </div>
-
-            <div class="popup-line">
-            <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
-            3) var contentType = "application/octet-stream";
-            </div>
-
-            <div class="popup-line">
-            <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-            4) var fileBytes = System.IO.File.ReadAllBytes(path);
-            </div>
-
-            <div class="popup-line">
-            <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
-            5) return File(fileBytes, contentType, file);
-            </div>
+        <br />
+        <button onclick="closeCodePopup()">Close</button>
+    </div>
+</div>
 
             <br />
             <button onclick="closeCodePopup()">Close</button>
