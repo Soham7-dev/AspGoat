@@ -22,7 +22,7 @@
     <div class="container">
         <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Can you perform a DOM XSS by polluting the Object Prototype?</h2>
+            <h2>Can you perform a DOM XSS by polluting the Object prototype?</h2>
             <button class="btn btn-outline-dark mt-3" onclick="toggleTheme()">Toggle Theme</button>
         </div>
 
@@ -104,12 +104,12 @@
 
         <!-- Null-prototype object for sinks -->
         <div class="diff-line removed">- const data = {};</div>
-        <div class="diff-line added">+ // Create an object that does not inherit properties from Object.prototype</div>
+        <div class="diff-line added">+ // Create an object that does not inherit properties from Object.prototype.</div>
         <div class="diff-line added">+ const data = Object.create(null);</div>
 
         <!-- Avoid HTML injection in greeting -->
         <div class="diff-line removed">- document.getElementById('app').innerHTML = `Hello ${name}`;</div>
-        <div class="diff-line added">+ // Output text instead of HTML to prevent XSS</div>       
+        <div class="diff-line added">+ // Output text instead of HTML to prevent XSS.</div>      
         <div class="diff-line added">+ document.getElementById('app').innerText = `Hello ${name}`;</div>
 
         <br />
@@ -121,7 +121,7 @@
         const defaults = { theme: "light", ui: { fallbackName: "Soham" } };
         const params = Object.fromEntries(new URLSearchParams(location.search));
 
-        // vulnerable function that allows arbitrary properties 
+        // A vulnerable function that allows arbitrary properties
         function setByPath(obj, path, value) {
             const keys = path.split('.');
             let cur = obj;
@@ -133,13 +133,13 @@
             cur[keys[keys.length - 1]] = value; 
         }
 
-        // merge user params into config
+        // Merge user params into config
         const config = { ...defaults };
         for (const [k, v] of Object.entries(params)) setByPath(config, k, v);
 
         document.documentElement.setAttribute("data-theme", config.theme);
 
-        // vulnerable sink
+        // A vulnerable sink
         const data = {}; 
         const name = (data.name ?? config.ui.fallbackName);
         document.getElementById('app').innerHTML = `Hello ${name}`;

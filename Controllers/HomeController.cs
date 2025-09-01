@@ -50,7 +50,6 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult StoredXSS(string comment)
     {
-        
         var newComment = new Comment
         {
             Content = comment
@@ -80,7 +79,7 @@ public class HomeController : Controller
         using var cmd = new SqliteCommand(query, conn);
         using var reader = cmd.ExecuteReader();
 
-        if (reader.Read()) // take first row only
+        if (reader.Read()) // Take first row only
         {
             ViewData["Id"] = reader["Id"].ToString();
             ViewData["UserName"] = reader["UserName"].ToString();
@@ -104,14 +103,14 @@ public class HomeController : Controller
     {
         if (username != "admin")
         {
-            //Username enumeration vulnerability
+            // Username enumeration vulnerability
             ViewData["Error"] = "User does not exist.";
             return View();
         }
 
         if (password != "admin")
         {
-            //Indicates username is valid
+            // Indicates username is valid
             ViewData["Error"] = "Incorrect password.";
             return View();
         }
@@ -140,9 +139,9 @@ public class HomeController : Controller
         {
             var xmlDoc = new XmlDocument
             {
-                XmlResolver = new XmlUrlResolver()  //Enables external entity fetching
+                XmlResolver = new XmlUrlResolver() // Enables external entity fetching
             };
-            //Vulnerable: External entity resolution enabled by default
+            // Vulnerable: External entity resolution is enabled by default.
             xmlDoc.LoadXml(xmlInput);
             result = xmlDoc.InnerText;
         }
@@ -175,7 +174,7 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult InsecureDirectObjectReference(int UserId)
     {
-        // Simulating dynamic user data with hardcoding
+        // Simulating dynamic user data with hardcoded values
         var userData = new Dictionary<int, Dictionary<string, object>>
         {
             { 1, new Dictionary<string, object>
@@ -227,7 +226,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Download(string file)
     {
-        // Vulnerable file concatination 
+        // Vulnerable file concatenation
         var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
 
         if (!System.IO.File.Exists(path))
@@ -256,7 +255,7 @@ public class HomeController : Controller
         var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
         Directory.CreateDirectory(uploads);
 
-        // Vulnerable filename concatenation
+        // Vulnerable: filename concatenation
         var filePath = Path.Combine(uploads, file.FileName);
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
@@ -269,7 +268,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CommandInjection(string domain)
     {
-        // Choose shell on the basis of OS
+        // Choose shell based on the OS
         string shell, args;
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
@@ -280,7 +279,7 @@ public class HomeController : Controller
         else
         {
             shell = "/bin/bash";
-            // VULNERABLE: direct concatenation of user input into shell command    
+            // VULNERABLE: direct concatenation of user input into shell command
             args = $"-c \"nslookup {domain}\"";
         }
 
@@ -314,7 +313,7 @@ public class HomeController : Controller
     {
         var json = body.GetRawText();
 
-        // Vulnerable code as TypeNameHandling.All let's attacker inject arbitrary objects of classes
+        // Vulnerable code as TypeNameHandling.All allows an attacker to inject arbitrary objects of classes.
         var settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.All
@@ -336,7 +335,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CSRF(int id, string email) 
+    public async Task<IActionResult> CSRF(int id, string email)
     {
         var emailRow = await _context.EmailIds.FindAsync(id);
         if (emailRow == null)

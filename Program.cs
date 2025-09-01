@@ -20,7 +20,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         if (csrfLab)
         {
             // CSRF lab → requires HTTPS in browsers
-            // Vulnerable as SamSiteMode.None allows both auth and anti-csrf cookies to be included in cross site request
+            // Vulnerable as SameSiteMode.None allows both auth and anti-CSRF cookies to be included in a cross-site request.
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         }
@@ -36,21 +36,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     
 var app = builder.Build();
 
-// Seeding fresh data into the database
+// Seed fresh data into the database.
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-    // Delete app.db if it already exists
+    // Delete app.db if it already exists.
     db.Database.EnsureDeleted();
-    // Create app.db and rebuild the entire Schema from scratch
+    // Create app.db and rebuild the entire schema from scratch.
     db.Database.EnsureCreated();
 
     // Users
     db.Users.AddRange(
         new User
         {
-            // Id will be 1 after reset
+            // Id will be 1 after reset.
             UserName = "soham",
             PasswordHash = "5f4dcc3b5aa765d61d8327deb882cf99", // "password" (MD5)
             Email = "soham@example.com",
@@ -59,7 +59,7 @@ using (var scope = app.Services.CreateScope())
         },
         new User
         {
-            // Id will be 2
+            // Id will be 2.
             UserName = "admin",
             PasswordHash = "21232f297a57a5a743894a0e4a801fc3", // "admin" (MD5)
             Email = "admin@example.com",
@@ -68,7 +68,7 @@ using (var scope = app.Services.CreateScope())
         },
         new User
         {
-            // Id will be 3
+            // Id will be 3.
             UserName = "guest",
             PasswordHash = "084e0343a0486ff05530df6c705c8bb4", // "guest" (MD5)
             Email = "guest@example.com",
@@ -81,7 +81,7 @@ using (var scope = app.Services.CreateScope())
     // EmailIds
     db.EmailIds.Add(new EmailId
     {
-        // Id will be 1 after reset
+        // Id will be 1 after reset.
         Email = "abc@user.net"
     });
     db.SaveChanges();

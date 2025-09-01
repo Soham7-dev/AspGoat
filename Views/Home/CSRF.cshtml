@@ -14,9 +14,8 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 CSRF Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Update your Email Id via a Cross Site Request 😉: </h2>
+            <h2>Update your Email ID via a Cross-Site Request 😉: </h2>
             <form method="POST">
                 <label for="email">Email:</label>
                 <input type="hidden" name="id" value="1">
@@ -26,10 +25,9 @@
 
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Cross Site Request Forgery (CSRF).</strong></p>
+            <p>This page is vulnerable to <strong>Cross-Site Request Forgery (CSRF).</strong></p>
             <p>Your task is to find the line that causes this and fix it.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
@@ -60,12 +58,11 @@
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 1)"> builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)</div>
-        <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 2)"> &nbsp;&nbsp;.AddCookie(options =&gt;</div>
+        <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 2)"> &nbsp;&nbsp;.AddCookie(options =></div>
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 3)"> &nbsp;&nbsp;{</div>
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 4)"> &nbsp;&nbsp;&nbsp;&nbsp;options.LoginPath = "/Account/Login";</div>
         <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVuln(this, 5)"> &nbsp;&nbsp;&nbsp;&nbsp;options.LogoutPath = "/Account/Logout";</div>
@@ -78,14 +75,13 @@
     </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
 
         <div class="diff-line removed">- options.Cookie.SameSite = SameSiteMode.None;</div>
 
-        <div class="diff-line added">+ // Prefer Lax so auth cookie is not sent on cross-site POST request</div>
+        <div class="diff-line added">+ // Prefer Lax so the auth cookie is not sent on a cross-site POST request.</div>
         <div class="diff-line added">+ options.Cookie.SameSite = SameSiteMode.Lax;</div>
 
         <br />

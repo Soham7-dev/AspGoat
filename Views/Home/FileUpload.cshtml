@@ -14,7 +14,6 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Malicious File Upload Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
             <h2>Can you Deface the Home Page of this Website with a cool hacker message 😈?</h2>
             <form asp-action="FileUpload" method="post" enctype="multipart/form-data" class="mb-3">
@@ -24,7 +23,6 @@
 
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>File Overwrite.</strong></p>
@@ -44,7 +42,7 @@
     <h6 style="margin: 25px;">More Information:</h6>
     <ul>
         <li>
-            <a href="https://portswigger.net/web-security/file-upload">Portswigger - File Uplodad Vulnerabilities</a>
+            <a href="https://portswigger.net/web-security/file-upload">Portswigger - File Upload Vulnerabilities</a>
         </li>
         <li>
             <a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">OWASP - Unrestricted File Upload</a>
@@ -53,7 +51,6 @@
             <a href="https://www.acunetix.com/vulnerabilities/web/unrestricted-file-upload/">Acunetix - Unrestricted File Upload</a>
         </li>
     </ul>
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -72,8 +69,7 @@
         </div>
         <div class="popup-line">
         <input id="vulnCheckbox" type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-        var filePath = Path.Combine(uploads, file.FileName); <!-- vulnerable -->
-        </div>
+        var filePath = Path.Combine(uploads, file.FileName); </div>
         <div class="popup-line">
         <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
         using (var stream = new FileStream(filePath, FileMode.Create))
@@ -92,18 +88,13 @@
     </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
-
-        <!-- removed (bad) -->
         <div class="diff-line removed">- var filePath = Path.Combine(uploads, file.FileName);</div>
-
-        <!-- added (good) -->
-        <div class="diff-line added">+ // Strip the path traversal characters</div>
+        <div class="diff-line added">+ // Strip the path traversal characters.</div>
         <div class="diff-line added">+ var filePath = Path.Combine(uploads, Path.GetFileName(file.FileName));</div>
-        <div class="diff-line added">+ // Allow a whitelist of file extensions</div>
+        <div class="diff-line added">+ // Allow a whitelist of file extensions.</div>
         <div class="diff-line added">+ var ext = Path.GetExtension(Path.GetFileName(file.FileName));</div>
         <div class="diff-line added">+ var allowed = new[] { ".png", ".jpg", ".jpeg", ".gif", ".pdf" };</div>
         <div class="diff-line added">+ if (!allowed.Contains(ext, StringComparer.OrdinalIgnoreCase))</div>

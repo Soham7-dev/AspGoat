@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "BrokenAuthentication";
+    ViewData["Title"] = "Broken Authentication";
 }
 <head>
     <meta charset="UTF-8">
@@ -47,7 +47,6 @@
         </li>
     </ul>
 
-<!-- Code Modal -->
 <div id="codeModal" class="modal">
     <div class="modal-content">
         <h3>🔍 Analyze the Code</h3>
@@ -107,7 +106,6 @@
     </div>
 </div>
 
-<!-- Diff Modal -->
 <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
@@ -120,11 +118,11 @@
         <div class="diff-line removed">- &nbsp;&nbsp;ViewData["Error"] = "Incorrect password.";</div>
         <div class="diff-line removed">- &nbsp;&nbsp;return View();</div>
         
-        <div class="diff-line added">+ // Give a generic message so that attacker can't enumerate usernames</div>
+        <div class="diff-line added">+ // Give a generic message so that an attacker can't enumerate usernames.</div>
         <div class="diff-line added">+ if (username != "admin" || password != "admin")</div>
         <div class="diff-line added">+ &nbsp;&nbsp;ViewData["Error"] = "Invalid username or password.";</div>
-        <div class="diff-line added">+ // Also implement captcha to protect against brute force attacks</div>
-        <div class="diff-line added">+ // Code for implementing captcha..</div>
+        <div class="diff-line added">+ // Also implement a captcha to protect against brute force attacks.</div>
+        <div class="diff-line added">+ // Code for implementing a captcha...</div>
         <div class="diff-line added">+ &nbsp;&nbsp;return View();</div>
 
         <br />

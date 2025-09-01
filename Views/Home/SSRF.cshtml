@@ -14,20 +14,18 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 SSRF Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2> An Internal Api endpoint contains sensitive data. Can you fetch it?</h2>
+            <h2> An internal API endpoint contains sensitive data. Can you fetch it?</h2>
             <form method="POST" asp-controller="Home" asp-action="SSRF">
-                <label for="targetUrl">Fetch Url:</label>
+                <label for="targetUrl">Fetch URL:</label>
                 <input type="url" name="targetUrl" id="targetUrl" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Server Side Request Forgery (SSRF).</strong></p>
+            <p>This page is vulnerable to <strong>Server-Side Request Forgery (SSRF).</strong></p>
             <p>Your task is to find the line that causes this and fix it.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
@@ -39,7 +37,7 @@
 
     <div style="text-align:center; margin-top:24px;">
         <h6>
-            Note: In real SSRF, attackers often target services on an internal/private IP.
+            Note: In a real SSRF attack, attackers often target services on an internal/private IP.
             For simplicity, this lab hosts a mock internal API on the same server as AspGoat.
         </h6>
     </div>
@@ -58,7 +56,6 @@
         </li>
     </ul>
 
-    <!-- First Modal -->
     <div id="codeModal" class="modal">
         <div class="modal-content">
             <h3>🔍 Analyze the Code</h3>
@@ -74,14 +71,13 @@
         </div>
     </div>
 
-    <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
     <div class="diff-content">
         <h3>✅ Secure Version</h3>
 
         <div class="diff-line removed">- var response = await http.GetStringAsync(targetUrl);</div>
 
-        <div class="diff-line added">+ // Create an allowlist of absolute urls</div>
+        <div class="diff-line added">+ // Create an allowlist of absolute URLs.</div>
         <div class="diff-line added">+ var allowedUrls = new HashSet&lt;string&gt;(StringComparer.Ordinal)</div>
         <div class="diff-line added">+ { "https://google.com", "https://facebook.com" };</div>
         <div class="diff-line added">+ if (!allowedUrls.Contains(targetUrl)) return BadRequest("Blocked URL");</div>

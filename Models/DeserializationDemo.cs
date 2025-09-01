@@ -8,7 +8,7 @@ namespace AspGoat.Models
     {
         public string? cmd { get; set; }
 
-        [OnDeserialized] // Magic Method
+        [OnDeserialized] // A magic method
         internal void Command(StreamingContext context)
         {
             string shell, args;

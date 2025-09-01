@@ -100,9 +100,9 @@
         <div class="diff-line removed">- args = $"/c nslookup &#123;domain&#125;";</div>
         <div class="diff-line removed">- args = $"-c &quot;nslookup &#123;domain&#125;&quot;";</div>
 
-        <div class="diff-line added">+ // Use .NET DNS API instead of shell command</div>
+        <div class="diff-line added">+ // Use the .NET DNS API instead of a shell command.</div>
         <div class="diff-line added">+ var addresses = System.Net.Dns.GetHostAddresses(domain);</div>
-        <div class="diff-line added">+ var result = string.Join(Environment.NewLine, addresses.Select(a =&gt; a.ToString()));</div>
+        <div class="diff-line added">+ var result = string.Join(Environment.NewLine, addresses.Select(a => a.ToString()));</div>
         <div class="diff-line added">+ return Content(result, "text/plain");</div>
 
         <br />

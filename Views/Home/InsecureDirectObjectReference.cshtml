@@ -17,7 +17,7 @@
     <div class="container">
         <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>Can you get someone else's data?</h2>
+            <h2>Can you access someone else's data?</h2>
             <form method="POST">
                 <label for="UserId">Get My User Data:</label><br>
                 <input type="hidden" name="UserId" value="2">
@@ -28,9 +28,9 @@
         <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Insecure Direct Object Reference.</strong></p>
-            <p>Your task is to find the line that causes this and fix it.</p>
-            <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
+            <p>This page is vulnerable to <strong>Insecure Direct Object Reference (IDOR).</strong></p>
+            <p>Your task is to identify the vulnerable line of code and fix it.</p>
+            <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify the Vulnerability</button>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
             <a href="https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html">OWASP - IDOR</a>
         </li>
         <li>
-            <a href="https://portswigger.net/web-security/access-control/idor">Portswigger - IDOR</a>
+            <a href="https://portswigger.net/web-security/access-control/idor">PortSwigger - IDOR</a>
         </li>
         <li>
             <a href="https://www.veracode.com/security/java/cwe-639/">Veracode - IDOR</a>
@@ -73,9 +73,9 @@
             <div class="diff-line removed">- if (userData.ContainsKey(UserId))</div>
             <div class="diff-line removed">- return Json(userData[UserId]);</div>
             
-            <div class="diff-line added">+ // Check if the logged in userId matches the userId in the payload</div>   
+            <div class="diff-line added">+ // Ensure the logged-in userId matches the userId in the request payload</div>   
             <div class="diff-line added">+ if (loggedInUserId == UserId && userData.ContainsKey(UserId))</div>
-            <div class="diff-line added">+ return Json(userData[UserId]);</div>
+            <div class="diff-line added">+     return Json(userData[UserId]);</div>
             <button onclick="closeDiffPopup()">Close</button>
         </div>
     </div>
@@ -83,3 +83,4 @@
     <script src="~/js/idor.js"></script>
 
 </body>
+</html>

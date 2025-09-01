@@ -10,17 +10,14 @@
     <link rel="stylesheet" href="~/css/app.css" />
 </head>
 <body>
-    <!-- Access log is being included at /logs/access-log.txt for development -->
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Information Disclosure Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
-            <h2>It looks like developers have forgotten to remove the access-log file before moving it to Prod :)</thead></thead></h2>
+            <h2>It looks like developers have forgotten to remove the access-log file before moving it to production :)</h2>
             <h6>@ViewData["Result"]</h6>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>Information Disclosure.</strong></p>
@@ -43,3 +40,4 @@
 
     <script src="~/js/infodis.js"></script>
 </body>
+</html>

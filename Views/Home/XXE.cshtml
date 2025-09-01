@@ -15,7 +15,6 @@
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 XML External Entities Demo</h1>
 
     <div class="container">
-        <!-- Vulnerable Functionality -->
         <div class="box">
             <h2>Vulnerable XML Parser</h2>
             <form method="POST">
@@ -25,7 +24,6 @@
             </form>
         </div>
 
-        <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
             <p>This page is vulnerable to <strong>XML External Entity (XXE) Injection.</strong></p>
@@ -34,7 +32,7 @@
         </div>
     </div>
 
-     <div style="text-align: center; margin-top: 25px">
+    <div style="text-align: center; margin-top: 25px">
         @if (!string.IsNullOrEmpty(xmlOutput))
         {
             <strong>Parsed Output:</strong>
@@ -42,7 +40,6 @@
         }
     </div>
 
-    <!-- Code Modal for XXE -->
     <div id="codeModal" class="modal">
         <div class="modal-content">
             <h3>🔍 Analyze the Code</h3>
@@ -82,7 +79,6 @@
         </div>
     </div>
 
-    <!-- Diff Modal for XXE -->
     <div id="diffModal" class="diff-modal">
         <div class="diff-content">
             <h3>✅ Secure Version</h3>
