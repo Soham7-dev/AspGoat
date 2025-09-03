@@ -52,27 +52,27 @@
 
             <div class="popup-line">
             <input type="checkbox" class="code-checkbox" id="vulnCheckbox" onchange="checkVulnerability(this, 1)">
-            1) var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file);
             </div>
 
             <div class="popup-line">
             <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
-            2) if (!System.IO.File.Exists(path)) { return NotFound("File not found"); }
+            if (!System.IO.File.Exists(path)) { return NotFound("File not found"); }
             </div>
 
             <div class="popup-line">
             <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
-            3) var contentType = "application/octet-stream";
+            var contentType = "application/octet-stream";
             </div>
 
             <div class="popup-line">
             <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-            4) var fileBytes = System.IO.File.ReadAllBytes(path);
+            var fileBytes = System.IO.File.ReadAllBytes(path);
             </div>
 
             <div class="popup-line">
             <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
-            5) return File(fileBytes, contentType, file);
+            return File(fileBytes, contentType, file);
             </div>
 
             <br />
