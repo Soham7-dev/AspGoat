@@ -123,6 +123,8 @@ Thanks goes to these wonderful people ✨
   <img src="https://contrib.rocks/image?repo=Soham7-dev/AspGoat" />
 </a>
 
+Made with [contrib.rocks](https://contrib.rocks).
+
 ---
 
 ## 📝 NOTE
