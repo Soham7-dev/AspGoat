@@ -60,33 +60,46 @@ It includes the **OWASP Top 10** and beyond, providing hands-on Application Secu
 
 ---
 
+# 🕹️ Demo
+
+
 # 🪛 Installation
 
-### Using Docker (recommended)
+### 1. Using Docker (recommended)
 
 ### Clone the repository
 
-```git clone https://github.com/Soham7-dev/AspGoat.git```
+```shell
+git clone https://github.com/Soham7-dev/AspGoat.git
+```
 
-```cd AspGoat```
+```shell
+cd AspGoat
+```
 
 ### Build the image
 
-```docker build -t aspgoat .```
+```shell
+docker build -t aspgoat .
+```
 
 ### Run the container
 
-```docker run --rm -p 8000:8000 aspgoat```
+```shell
+docker run --rm -p 8000:8000 aspgoat
+```
 
 ### Access the app
 
-```http://localhost:8000```
+```shell
+http://localhost:8000
+```
 
 
 ---
 
 
-### Using .NET SDK
+### 2. Using .NET SDK
 
 Download and install the **.NET SDK 8.0 (LTS)** from:  
 👉 [.NET-Download](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)  
@@ -95,21 +108,31 @@ Download and install the **.NET SDK 8.0 (LTS)** from:
 
 ### Clone the repository
 
-```git clone https://github.com/Soham7-dev/AspGoat.git```
+```shell
+git clone https://github.com/Soham7-dev/AspGoat.git
+```
 
-```cd AspGoat```
+```shell
+cd AspGoat
+```
 
 ### Restore Dependencies
 
-```dotnet restore```
+```shell
+dotnet restore
+```
 
 ### Run the app
 
-```dotnet run```
+```shell
+dotnet run
+```
 
 ### Access the app
 
-```http://localhost:5073```
+```shell
+http://localhost:5073
+```
 
 
 ---
