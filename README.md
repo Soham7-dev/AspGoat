@@ -120,7 +120,7 @@ Download and install the **.NET SDK 8.0 (LTS)** from:
 Thanks goes to these wonderful people ✨
 
 <a href="https://github.com/Soham7-dev/AspGoat/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Soham7-dev/AspGoat" />
+  <img src="https://contrib.rocks/image?repo=Soham7-dev/AspGoat&anon=1" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
