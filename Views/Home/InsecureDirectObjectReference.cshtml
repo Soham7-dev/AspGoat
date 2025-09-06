@@ -1,4 +1,4 @@
-@model List<string>
+@model Dictionary<string, object>
 @{
     ViewData["Title"] = "IDOR Demo";
 }
@@ -20,19 +20,39 @@
             <h2>Can you get someone else's data?</h2>
             <form method="POST">
                 <label for="UserId">Get My User Data:</label><br>
-                <input type="hidden" name="UserId" value="2">
-                <button type="submit">Submit</button>
+                <input type="hidden" name="UserId" value="1">
+                <button class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>
 
         <!-- Secure Coding Challenge -->
         <div class="box">
             <h2>🔐 Secure the Code</h2>
-            <p>This page is vulnerable to <strong>Insecure Direct Object Reference.</strong></p>
+            <p>This page is vulnerable to <strong>Insecure Direct Object Reference (IDOR).</strong></p>
             <p>Your task is to find the line that causes this and fix it.</p>
             <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
         </div>
     </div>
+
+    <h2 style="margin: 25px; text-align: center;">User Information</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kvp in Model)
+            {
+                <tr>
+                    <td>@kvp.Key</td>
+                    <td>@kvp.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
     <h6 style="margin: 25px;">More Information:</h6>
     <ul>
@@ -57,7 +77,7 @@
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
-                <span>return Json(userData[UserId]);</span>
+                <span>return View(userData[UserId]);</span>
             </div>
 
             <br />
@@ -73,8 +93,8 @@
             <div class="diff-line removed">- if (userData.ContainsKey(UserId))</div>
             <div class="diff-line removed">- return Json(userData[UserId]);</div>
             
-            <div class="diff-line added">+ // Check if the logged in userId matches the userId in the payload</div>   
-            <div class="diff-line added">+ if (loggedInUserId == UserId && userData.ContainsKey(UserId))</div>
+            <div class="diff-line added">+ // Check if the logged in userId matches the userId in the request body</div>   
+            <div class="diff-line added">+ if (User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value == UserId.ToString() && userData.ContainsKey(UserId))</div>
             <div class="diff-line added">+ return Json(userData[UserId]);</div>
             <button onclick="closeDiffPopup()">Close</button>
         </div>
