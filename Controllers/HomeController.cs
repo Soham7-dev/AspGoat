@@ -169,7 +169,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult InsecureDirectObjectReference()
     {
-        return View();
+        return View(new Dictionary<string, object>());
     }
 
     [HttpPost]
@@ -200,7 +200,7 @@ public class HomeController : Controller
 
         if (userData.ContainsKey(UserId))
         {
-            return Json(userData[UserId]);
+            return View(userData[UserId]);
         }
 
         return NotFound("User not found");
@@ -269,37 +269,39 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CommandInjection(string domain)
     {
-        // Choose shell on the basis of OS
-        string shell, args;
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (!String.IsNullOrEmpty(domain))
         {
-            shell = "cmd.exe";
-            // VULNERABLE: direct concatenation of user input into shell command
-            args = $"/c nslookup {domain}";
+            // Choose shell on the basis of OS
+            string shell, args;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                shell = "cmd.exe";
+                // VULNERABLE: direct concatenation of user input into shell command
+                args = $"/c nslookup {domain}";
+            }
+            else
+            {
+                shell = "/bin/bash";
+                // VULNERABLE: direct concatenation of user input into shell command    
+                args = $"-c \"nslookup {domain}\"";
+            }
+
+            var process = new Process();
+            process.StartInfo.FileName = shell;
+            process.StartInfo.Arguments = args;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+
+            ViewData["Output"] = output;
         }
-        else
-        {
-            shell = "/bin/bash";
-            // VULNERABLE: direct concatenation of user input into shell command    
-            args = $"-c \"nslookup {domain}\"";
-        }
 
-        var process = new Process();
-        process.StartInfo.FileName = shell;
-        process.StartInfo.Arguments = args;
-        process.StartInfo.RedirectStandardOutput = true;
-        process.StartInfo.RedirectStandardError = true;
-        process.StartInfo.UseShellExecute = false;
-        process.StartInfo.CreateNoWindow = true;
-
-        process.Start();
-        string output = process.StandardOutput.ReadToEnd();
-        string error = process.StandardError.ReadToEnd();
-        process.WaitForExit();
-
-        ViewData["Output"] = output;
-
-        // return Content($"$ nslookup {domain}\n\n{output}{error}", "text/plain");
         return View();
     }
 
