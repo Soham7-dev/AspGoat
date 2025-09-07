@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="wwwroot/AspGoatLogo-Github.png" alt="AspGoat Logo" height="400" width="1000"/>
+  <img src="wwwroot/AspGoatLogo-Github.png" alt="AspGoat Logo" height="400" width="800"/>
 </p>
 
 <h1 align="center">🐐 AspGoat</h1>
