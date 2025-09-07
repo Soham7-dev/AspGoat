@@ -74,26 +74,16 @@ It includes the **OWASP Top 10** and beyond, providing hands-on Application Secu
 
 ### 1. Using Docker (recommended)
 
-### Clone the repository
+### Pull the image
 
 ```shell
-git clone https://github.com/Soham7-dev/AspGoat.git
-```
-
-```shell
-cd AspGoat
-```
-
-### Build the image
-
-```shell
-docker build -t aspgoat .
+docker pull sohamburger/aspgoat:latest
 ```
 
 ### Run the container
 
 ```shell
-docker run --rm -p 8000:8000 aspgoat
+docker run --rm -p 8000:8000 sohamburger/aspgoat:latest
 ```
 
 ### Access the app
