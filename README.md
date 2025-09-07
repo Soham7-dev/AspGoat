@@ -1,7 +1,7 @@
 # AspGoat : A Damn Vulnerable ASP.NET Web Application
 
 <p align="center">
-  <img src="wwwroot/AspGoatLogo-Github.png" alt="AspGoat Logo" height="400" width="600"/>
+  <img src="wwwroot/AspGoatLogo-Github.png" alt="AspGoat Logo" height="550" width="700"/>
 </p>
 
 <h1 align="center">🐐 AspGoat</h1>
