@@ -1,0 +1,12 @@
+.git
+.github
+bin/
+obj/
+*.md
+*.user
+*.suo
+*.swp
+node_modules
+.env
+Dockerfile*
+docker-compose*.yml
