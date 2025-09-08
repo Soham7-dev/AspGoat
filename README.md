@@ -26,7 +26,7 @@
     <img src="https://img.shields.io/github/actions/workflow/status/Soham7-dev/AspGoat/dotnet.yml?style=flat-square" alt="ci-status"/>
   </a>
   <a href="https://hub.docker.com/r/YOUR_DOCKERHUB_USERNAME/aspgoat">
-    <img src="https://img.shields.io/docker/pulls/YOUR_DOCKERHUB_USERNAME/aspgoat?style=flat-square&logo=docker" alt="docker pulls"/>
+    <img src="https://img.shields.io/docker/pulls/sohamburger/aspgoat?style=flat-square&logo=docker" alt="docker pulls"/>
   </a>
 </p>
 
