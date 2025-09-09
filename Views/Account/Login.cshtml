@@ -54,6 +54,10 @@
         background-color: #4a2180; /* slightly darker shade on hover */
         }
 
+        button:hover {
+            cursor: pointer;
+        }
+        
         .message {
             color: #555;
             margin-top: 10px;
@@ -78,7 +82,8 @@
             <label>Password</label><br />
             <input type="password" name="password" value="admin123" required />
         </div>
-        <button type="submit">Login</button>
+        <button style="background:#5a2a9c; color:whitesmoke;" type="submit">Login</button>
+
 
         @if (ViewData["Error"] != null)
         {
