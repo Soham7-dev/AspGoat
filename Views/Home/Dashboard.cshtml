@@ -3,11 +3,24 @@
 }
 <style>
     img.logo {
-            width: 200px;
-        }
+        width: 200px;
+    }
+
+    .sebtn {
+        background-color: #512bd4;
+        color: white;
+    }
+
+    .sebtn:hover {
+        background-color: #3F51B5;
+        color: white;
+    }
 </style>
+
 <div class="text-center">
-    <h1 class="display-4"><img src="/AspGoatLogo.png" class="logo"> Welcome to AspGoat</h1>
+    <h1 class="display-4">
+        <img src="/AspGoatLogo.png" class="logo"> Welcome to AspGoat
+    </h1>
     <p class="lead">An intentionally vulnerable ASP.NET Core app for learning web security.</p>
 
     <hr style="margin: 30px auto; width: 60%;" />
@@ -25,6 +38,6 @@
 
         <p style="color: red;"><strong>Note:</strong> Do not deploy this app to production!</p>
 
-        <a href="/Home/SqlInjection" class="btn mt-3" style="background-color: #512bd4; color: white;">Start Exploring</a>
+        <a href="/Home/SqlInjection" class="btn mt-3 sebtn">Start Exploring</a>
     </div>
 </div>
