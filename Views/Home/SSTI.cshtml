@@ -1,0 +1,158 @@
+@{
+    ViewData["Title"] = "SSTI Demo";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/app.css" />
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-bottom: 40px;">🧪 SSTI Demo</h1>
+
+    <div class="container">
+        <!-- Vulnerable Functionality -->
+        <div class="box">
+            <h2>Can you get an RCE by injecting C# code 🤔?</h2>
+            <form method="POST">
+                <label for="email">Username:</label>
+                <input type="hidden" name="id" value="2">
+                <input type="text" name="userName" id="userName" required>
+                <br/>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+            <br/>
+        </div>
+
+        <!-- Secure Coding Challenge -->
+        <div class="box">
+            <h2>🔐 Secure the Code</h2>
+            <p>This page is vulnerable to <strong>Remote Code Execution via Server Side Template Injection. (SSTI)</strong></p>
+            <p>Your task is to find the line that causes this and fix it.</p>
+            <button class="btn btn-outline-dark mt-2" onclick="openCodePopup()">🕵️ Identify Vulnerability</button>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px">
+        <h6>Username: @ViewData["Html"]</h6>
+    </div>
+
+    <h6 style="margin: 25px;">More Information:</h6>
+    <ul>
+        <li>
+            <a href="https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection">OWASP - SSTI</a>
+        </li>
+        <li>
+            <a href="https://portswigger.net/web-security/server-side-template-injection">Portswigger - SSTI</a>
+        </li>
+        <li>
+            <a href="https://github.com/toddams/RazorLight">RazorLight Template Engine</a>
+        </li>
+    </ul>
+
+    <!-- Code Modal -->
+    <div id="codeModal" class="modal">
+    <div class="modal-content">
+        <h3>🔍 Analyze the Code</h3>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 1)">
+        var userName = _context.Users.Where(u =&gt; u.Id).Select(u =&gt; u.UserName).FirstOrDefault();
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
+        var key = Guid.NewGuid().ToString("N");
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
+        var html = "";
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
+        try
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
+        {
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)">
+        html = await razor.CompileRenderStringAsync(key, userName ?? "Null", new { });
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)">
+        }
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 8)">
+        catch (Exception e)
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 9)">
+        {
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 10)">
+        html = e.Message;
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 11)">
+        }
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 12)">
+        ViewData["Html"] = html;
+        </div>
+
+        <div class="popup-line">
+        <input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 13)">
+        return View();
+        </div>
+
+        <br />
+        <button onclick="closeCodePopup()">Close</button>
+    </div>
+    </div>
+
+    <!-- Diff Modal -->
+    <div id="diffModal" class="diff-modal">
+    <div class="diff-content">
+        <h3>✅ Secure Version</h3>
+
+        <div class="diff-line removed">
+        - html = await razor.CompileRenderStringAsync(key, userName ?? "Null", new { });
+        </div>
+        <div class="diff-line removed">
+        - html = e.Message; 
+        </div>
+
+        <div class="diff-line added">
+        + // Treat DB content as data, not Razor template
+        </div>
+        <div class="diff-line added">
+        + html = userName;
+        </div>
+
+        <br />
+        <button onclick="closeDiffPopup()">Close</button>
+    </div>
+    </div>
+
+    <script src="~/js/ssti.js"></script>
+
+</body>
+</html>
