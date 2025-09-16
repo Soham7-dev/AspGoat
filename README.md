@@ -25,7 +25,7 @@
   <a href="https://github.com/Soham7-dev/AspGoat/actions">
     <img src="https://img.shields.io/github/actions/workflow/status/Soham7-dev/AspGoat/dotnet.yml?style=flat-square" alt="ci-status"/>
   </a>
-  <a href="https://hub.docker.com/r/YOUR_DOCKERHUB_USERNAME/aspgoat">
+  <a href="https://hub.docker.com/r/sohamburger/aspgoat">
     <img src="https://img.shields.io/docker/pulls/sohamburger/aspgoat?style=flat-square&logo=docker" alt="docker pulls"/>
   </a>
 </p>
@@ -59,6 +59,8 @@ It includes the **OWASP Top 10** and beyond, providing hands-on Application Secu
   - 🐞 **Insecure Deserialization**
   - 🐞 **Command Injection**
   - 🐞 **Prototype Pollution**
+  - 🐞 **Cache Poisoning**
+  - 🐞 **Server Side Template Injection (SSTI)**
   - 🛡️ **Secure vs Insecure coding snippets**  
   - 🐳 **Ready-to-run Docker setup**  
 

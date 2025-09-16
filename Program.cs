@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using AspGoat.Models;
+using RazorLight;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ bool csrfLab = builder.Configuration.GetValue<bool>("csrfLab");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddSingleton<IRazorLightEngine>(
+    new RazorLightEngineBuilder().UseMemoryCachingProvider().Build());
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -33,6 +37,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddResponseCaching();
     
 var app = builder.Build();
 
@@ -96,6 +102,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseResponseCaching();
 app.UseStaticFiles();
 
 app.UseRouting();

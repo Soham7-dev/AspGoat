@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using Formatting = Newtonsoft.Json.Formatting;
 using System.Text.Json;
 using System.Threading.Tasks;
+using RazorLight;
 
 namespace AspGoat.Controllers;
 
@@ -366,6 +367,55 @@ public class HomeController : Controller
         ViewData["Response"] = response;
 
         return View();
+    }
+
+    [HttpGet]
+    // Vulnerable as the X-Forwarded-Host is not taken into account for the Cache Key
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByHeader = "")]
+    public IActionResult CachePoisoning()
+    {
+        var host = Request.Headers["X-Forwarded-Host"];
+
+        ViewData["X-Forwarded-Host"] = host;
+
+        return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SSTI([FromServices] IRazorLightEngine razor)
+    {
+        var userName = _context.Users.Where(u => u.Id == 2).Select(u => u.UserName).FirstOrDefault();
+
+        var key = Guid.NewGuid().ToString("N");
+
+        var html = "";
+
+        try
+        {
+            // Vulnerable as it compiles & executes user-supplied Razor (Razorlight Template Engine)
+            html = await razor.CompileRenderStringAsync(key, userName ?? "Null", new { });
+        }
+        catch (Exception e)
+        {
+            html = e.Message;
+        }
+
+        ViewData["Html"] = html;
+
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SSTI(int id, string userName)
+    {
+        var userRow = await _context.Users.FindAsync(id);
+        if (userRow == null)
+            return NotFound($"User {id} not found.");
+
+        userRow.UserName = userName;
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction();
     }
 
     [AllowAnonymous]
