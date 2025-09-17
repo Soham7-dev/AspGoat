@@ -29,7 +29,7 @@ We welcome all contributions — from bug reports and code improvements to new l
 
    - Keep code readable and commented
    - For new labs, include both vulnerable code and secure fix
-   - Obfuscate the JavaScript file before committing / pushing the code with this tool : https://www.npmjs.com/package/javascript-obfuscator
+   - Obfuscate the JavaScript file before committing / pushing the code with this tool : https://obfuscator.io/
   
 4. **Push your code to your branch**
 
