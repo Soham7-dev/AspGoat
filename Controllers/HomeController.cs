@@ -358,16 +358,34 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> SSRF(string targetUrl)
-    {
-        using var http = new HttpClient();
+public async Task<IActionResult> SSRF(string targetUrl)
+{
+    // Define a whitelist of allowed domains
+    var allowedHosts = new[] { "example.com", "api.example.com" };
 
-        // Vulnerable as the targetUrl is not whitelisted
+    try
+    {
+        // Parse the target URL
+        var uri = new Uri(targetUrl);
+
+        // Check if the host is in the whitelist
+        if (!allowedHosts.Contains(uri.Host))
+        {
+            return BadRequest("The specified URL is not allowed.");
+        }
+
+        using var http = new HttpClient();
         var response = await http.GetStringAsync(targetUrl);
         ViewData["Response"] = response;
 
         return View();
     }
+    catch (Exception ex)
+    {
+        // Handle invalid URLs or other exceptions
+        return BadRequest($"Error: {ex.Message}");
+    }
+}
 
     [HttpGet]
     // Vulnerable as the X-Forwarded-Host is not taken into account for the Cache Key
