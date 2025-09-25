@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "AI / LLM Vulnerabilities Dashboard";
+}
+
+<div class="container py-4">
+    <div class="d-flex align-items-center mb-3">
+        <h1 class="h3 mb-0">AI / LLM Vulnerabilities</h1>
+    </div>
+
+    <p class="text-muted mb-4">
+        <strong>Follow the instructions below in order to connect AspGoat to an LLM</strong>
+    </p>
+
+    <h6 style="text-align: center; margin: 40px;">1. In order to tackle the AI / LLM Labs, first run Ollama server in your local machine via docker (recommended) : <a href="https://hub.docker.com/r/ollama/ollama">Ollama</a></h6>
+
+    <h6 style="text-align: center; margin: 40px;">2. Install the <strong>"tinyllama:1.1b-chat"</strong> AI model inside the docker container : <strong>docker exec -it ollama ollama pull tinyllama:1.1b-chat</strong> </h6>
+
+    <h6 style="text-align: center; margin: 40px;">3. (optional) If you want to use your own AI model inside Ollama server. Put the name of the ai model in appsettings.json inside <strong>aiModel</strong> parameter and install it inside the docker container using: <strong>docker exec -it ollama ollama pull &lt;name-of-ai-model&gt;</strong> </h6>
+
+    <div class="row g-3">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <a class="btn btn-primary w-100 py-3"
+               asp-controller="LLM" asp-action="PromptInjection"
+               title="Classic prompt override / instruction hijacking">
+                Prompt Injection
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <a class="btn btn-success w-100 py-3"
+               asp-controller="LLM" asp-action="ExcessiveAgency"
+               title="Over-privileged tool calls / unintended actions">
+                Excessive Agency
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <a class="btn btn-danger w-100 py-3"
+               asp-controller="LLM" asp-action="InsecureOutputHandling"
+               title="Unsafely executing or rendering model output">
+                Insecure Output Handling
+            </a>
+        </div>
+
+    </div>
+</div>

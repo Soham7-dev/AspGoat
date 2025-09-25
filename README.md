@@ -62,7 +62,11 @@ It includes the **OWASP Top 10** and beyond, providing hands-on Application Secu
   - 🐞 **Cache Poisoning**
   - 🐞 **Server Side Template Injection (SSTI)**
   - 🛡️ **Secure vs Insecure coding snippets**  
-  - 🐳 **Ready-to-run Docker setup**  
+  - 🐳 **Ready-to-run Docker setup**
+- 🤖 AI / LLM Red-Teaming labs covering:
+  - 🐞 **Prompt Injection**
+  - 🐞 **Excessive Agency**
+  - 🐞 **Insecure Output Handling**
 
 ---
 
