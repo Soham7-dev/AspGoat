@@ -1,6 +1,6 @@
 [2025-08-03 14:22:18] GET /home 200 OK - IP: 192.168.1.10
 [2025-08-03 14:22:19] GET /about 200 OK - IP: 192.168.1.10
-[2025-08-03 14:22:21] POST /login 302 Redirect - IP: 192.168.1.10 - Payload: username=admin&password=SuperSecret123
+[2025-08-03 14:22:21] POST /login 302 Redirect - IP: 192.168.1.10 - Payload: username=admin&password=admin123
 [2025-08-03 14:22:22] GET /dashboard 200 OK - IP: 192.168.1.10
 [2025-08-03 14:22:24] GET /profile 200 OK - IP: 192.168.1.10
 [2025-08-03 14:22:27] GET /logout 200 OK - IP: 192.168.1.10
