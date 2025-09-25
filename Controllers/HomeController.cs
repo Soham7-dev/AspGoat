@@ -431,6 +431,11 @@ public class HomeController : Controller
         });
     }
 
+    public IActionResult LLM_Vulnerabilities()
+    {
+        return View("LLM_Vuln");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

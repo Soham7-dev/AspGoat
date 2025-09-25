@@ -94,6 +94,7 @@
         <a asp-controller="Home" asp-action="SSRF">🐞 Server Side Request Forgery (SSRF)</a>
         <a asp-controller="Home" asp-action="CachePoisoning">🐞 Cache Poisoning</a>
         <a asp-controller="Home" asp-action="SSTI">🐞 Server Side Template Injection (RCE)</a>
+        <a asp-controller="Home" asp-action="LLM_Vulnerabilities">🐞 AI / LLM Vulnerabilities</a>
     </div>
 
     <div class="topbar">
@@ -108,4 +109,20 @@
         @RenderBody()
     </div>
 </body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const bar = document.querySelector(".sidebar");   
+  if (!bar) return;
+
+  // restore saved position
+  bar.scrollTop = +sessionStorage.getItem("sidebarScroll") || 0;
+
+  // remember current position
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.setItem("sidebarScroll", bar.scrollTop);
+  });
+});
+</script>
+
 </html>

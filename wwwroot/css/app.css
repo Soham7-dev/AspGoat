@@ -65,3 +65,48 @@ body {
 button {
     margin-top: 15px;
 }
+
+
+
+/* CSS for AI / LLM Labs */
+
+
+
+.chat-wrap { max-width: 860px; margin: 32px auto; padding: 0 12px; }
+.title { font-weight: 700; margin-bottom: 12px; }
+
+.chat-window {
+    height: 60vh; min-height: 360px;
+    border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 12px; overflow-y: auto; background: #fafafa;
+}
+
+.msg { display: flex; margin: 8px 0; }
+.msg.user   { justify-content: flex-end; }
+.msg.assistant { justify-content: flex-start; }
+
+.bubble {
+    max-width: 78%;
+    padding: 10px 12px; border-radius: 14px;
+    line-height: 1.45; white-space: pre-wrap; word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+.user .bubble { background: #d1fae5; }       /* green-ish */
+.assistant .bubble { background: #e5e7eb; }  /* gray */
+
+.input-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px;
+    margin-top: 12px;
+}
+.prompt {
+    resize: none; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 10px;
+    outline: none; font: inherit; background: #fff;
+}
+.sendbtn {
+    padding: 0 16px; border: none; border-radius: 10px; cursor: pointer;
+    background: #10b981; color:#fff; font-weight: 600;
+    margin-top: 0 !important;
+}
+.sendbtn:disabled { opacity: .6; cursor: not-allowed; }
+
+.typing { font-size: 0.9rem; color: #6b7280; margin: 6px 4px; }

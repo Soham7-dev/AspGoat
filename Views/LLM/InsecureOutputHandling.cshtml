@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Insecure Output Handling Demo";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/app.css" />
+</head>
+
+<div class="chat-wrap">
+    <h1 class="title">🧪 Insecure Output Handling Demo</h1>
+
+    <div id="chat" class="chat-window"></div>
+
+    <div class="input-row">
+        <textarea id="prompt" class="prompt" rows="1" placeholder="I am your coding assistant..."></textarea>
+        <button id="send" class="sendbtn">Send</button>
+    </div>
+</div>
+
+<script src="~/LLM-js/ioh.js"></script>

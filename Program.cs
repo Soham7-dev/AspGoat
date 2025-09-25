@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using AspGoat.Models;
 using RazorLight;
+using OllamaSharp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,14 @@ bool csrfLab = builder.Configuration.GetValue<bool>("csrfLab");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddSingleton(sp =>
+{
+    var client = new OllamaApiClient(new Uri("http://localhost:11434"));
+    client.SelectedModel = builder.Configuration.GetValue<string>("aiModel") ?? "tinyllama:1.1b-chat"; 
+    return client;
+});
+
 
 builder.Services.AddSingleton<IRazorLightEngine>(
     new RazorLightEngineBuilder().UseMemoryCachingProvider().Build());

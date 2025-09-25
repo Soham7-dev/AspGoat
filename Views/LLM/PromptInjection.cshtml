@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Prompt Injection Demo";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/app.css" />
+</head>
+
+<div class="chat-wrap">
+    <h1 class="title">🧪 Prompt Injection Demo</h1>
+
+    <div id="chat" class="chat-window"></div>
+
+    <div class="input-row">
+        <textarea id="prompt" class="prompt" rows="1" placeholder="Type a message..."></textarea>
+        <button id="send" class="sendbtn">Send</button>
+    </div>
+</div>
+
+<script src="~/LLM-js/pi.js"></script>
