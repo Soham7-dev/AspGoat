@@ -11,11 +11,13 @@
         <strong>Follow the instructions below in order to connect AspGoat to an LLM</strong>
     </p>
 
-    <h6 style="text-align: center; margin: 40px;">1. In order to tackle the AI / LLM Labs, first run Ollama server in your local machine via docker (recommended) : <a href="https://hub.docker.com/r/ollama/ollama">Ollama</a></h6>
+    <h6 style="text-align: center; margin: 40px;">1. Install <strong><a href="https://docs.docker.com/desktop/">Docker Desktop</a></strong> for your OS</h6>
 
-    <h6 style="text-align: center; margin: 40px;">2. Install the <strong>"tinyllama:1.1b-chat"</strong> AI model inside the docker container : <strong>docker exec -it ollama ollama pull tinyllama:1.1b-chat</strong> </h6>
+    <h6 style="text-align: center; margin: 40px;">2. In order to tackle the AI / LLM Labs, run Ollama server in your local machine via docker (recommended) : <a href="https://hub.docker.com/r/ollama/ollama">Ollama</a></h6>
 
-    <h6 style="text-align: center; margin: 40px;">3. (optional) If you want to use your own AI model inside Ollama server. Put the name of the ai model in appsettings.json inside <strong>aiModel</strong> parameter and install it inside the docker container using: <strong>docker exec -it ollama ollama pull &lt;name-of-ai-model&gt;</strong> </h6>
+    <h6 style="text-align: center; margin: 40px;">3. Install the <strong>"tinyllama:1.1b-chat"</strong> AI model inside the docker container : <strong>docker exec -it ollama ollama pull tinyllama:1.1b-chat</strong> </h6>
+
+    <h6 style="text-align: center; margin: 40px;">4. (optional) If you want to use your own AI model inside Ollama server. Put the name of the ai model in appsettings.json inside <strong>aiModel</strong> parameter and install it inside the docker container using: <strong>docker exec -it ollama ollama pull &lt;name-of-ai-model&gt;</strong> </h6>
 
     <div class="row g-3">
 
