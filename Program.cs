@@ -13,13 +13,15 @@ bool csrfLab = builder.Configuration.GetValue<bool>("csrfLab");
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+// Check if the environment is docker or a full fledged OS
+var isContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+
 builder.Services.AddSingleton(sp =>
 {
-    var client = new OllamaApiClient(new Uri("http://localhost:11434"));
+    var client = new OllamaApiClient(new Uri(isContainer ? "http://host.docker.internal:11434" : "http://localhost:11434"));
     client.SelectedModel = builder.Configuration.GetValue<string>("aiModel") ?? "tinyllama:1.1b-chat"; 
     return client;
 });
-
 
 builder.Services.AddSingleton<IRazorLightEngine>(
     new RazorLightEngineBuilder().UseMemoryCachingProvider().Build());
