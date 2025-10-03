@@ -30,6 +30,47 @@
   </a>
 </p>
 
+<h4>Table of Contents</h4>
+
+<ul>
+  <li><a href="#-about-aspgoat">📖 About AspGoat</a></li>
+  <li><a href="#-features">✨ Features</a></li>
+  <li><a href="#-demo">🕹️ Demo</a></li>
+  <li><a href="#-installation">🪛 Installation</a>
+    <ul>
+      <li><a href="#1-using-docker-recommended">1. Using Docker (recommended)</a>
+        <ul>
+          <li><a href="#pull-the-image">Pull the image</a></li>
+          <li><a href="#run-the-container">Run the container</a></li>
+          <li><a href="#access-the-app">Access the app</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-using-net-sdk">2. Using .NET SDK</a>
+        <ul>
+          <li><a href="#clone-the-repository">Clone the repository</a></li>
+          <li><a href="#restore-dependencies">Restore Dependencies</a></li>
+          <li><a href="#run-the-app">Run the app</a></li>
+          <li><a href="#access-the-app-1">Access the app</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#-overview">🧪 Overview</a>
+    <ul>
+      <li><a href="#-contributors">👥 Contributors</a></li>
+      <li><a href="#-note">📝 NOTE</a></li>
+    </ul>
+  </li>
+  <li><a href="#-vulnerabilities-catalog">⚠️ Vulnerabilities Catalog</a></li>
+  <li><a href="#-labs--challenges">🎯 Labs & Challenges</a></li>
+  <li><a href="#-testing">🧪 Testing</a></li>
+  <li><a href="#-contributing">🤝 Contributing</a></li>
+  <li><a href="#-security-policy">🔒 Security Policy</a></li>
+  <li><a href="#-roadmap">🛣️ Roadmap</a></li>
+  <li><a href="#-license">📜 License</a></li>
+  <li><a href="#-acknowledgements">🙏 Acknowledgements</a></li>
+  <li><a href="#-contact">📬 Contact</a></li>
+</ul>
 ---
 
 ## 📖 About AspGoat
