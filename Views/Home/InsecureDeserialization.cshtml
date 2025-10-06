@@ -1,14 +1,16 @@
 @{
-    ViewData["Title"] = "Insecure Deserialization Demo";
+ViewData["Title"] = "Insecure Deserialization Demo";
 }
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/app.css" />
 </head>
+
 <body>
 
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 Insecure Deserialization Demo</h1>
@@ -36,7 +38,10 @@
     </div>
 
     <div style="text-align: center; margin-top: 25px">
-        <h6><strong>Note: </strong>Using 'calc.exe' you can open the calculator app only in Windows based systems. In case of Linux or MacOS, the command will be different. For Docker, there might not be a calculator app pre-installed. If you can gain Remote Code Execution on any system, consider this challenge solved 👍.</h6>
+        <h6><strong>Note: </strong>Using <strong>calc.exe</strong> you can open the calculator app only in Windows based
+            systems. In case of Linux or MacOS, the command will be different. For Docker, there might not be a
+            calculator app pre-installed. If you can gain Remote Code Execution on any system, consider this challenge
+            solved 👍.</h6>
     </div>
 
     <!-- First Modal -->
@@ -45,31 +50,31 @@
             <h3>🔍 Analyze the Code</h3>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 1)">
-            <span>var json = body.GetRawText();</span>
+                <span>var json = body.GetRawText();</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
-            <span>var settings = new JsonSerializerSettings {</span>
+                <span>var settings = new JsonSerializerSettings {</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
-            <span>&nbsp;&nbsp;TypeNameHandling = TypeNameHandling.All</span>
+                <span>&nbsp;&nbsp;TypeNameHandling = TypeNameHandling.All</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
-            <span>};</span>
+                <span>};</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
-            <span>var obj = JsonConvert.DeserializeObject&lt;SafeMessage&gt;(json, settings);</span>
+                <span>var obj = JsonConvert.DeserializeObject&lt;SafeMessage&gt;(json, settings);</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)">
-            <span>var message = obj?.Message;</span>
+                <span>var message = obj?.Message;</span>
             </div>
 
             <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)">
-            <span>return Json(new { message });</span>
+                <span>return Json(new { message });</span>
             </div>
 
             <br />
@@ -87,46 +92,52 @@
             <div class="diff-line removed">- };</div>
 
             <div class="diff-line added">+ var settings = new JsonSerializerSettings {</div>
-            <div class="diff-line added">+ &nbsp;&nbsp;TypeNameHandling = TypeNameHandling.None, // Do not honor $type</div>
-            <div class="diff-line added">+ &nbsp;&nbsp;MetadataPropertyHandling = MetadataPropertyHandling.Ignore // Ignore metadata like $type/$id</div>
+            <div class="diff-line added">+ &nbsp;&nbsp;TypeNameHandling = TypeNameHandling.None, // Do not honor $type
+            </div>
+            <div class="diff-line added">+ &nbsp;&nbsp;MetadataPropertyHandling = MetadataPropertyHandling.Ignore //
+                Ignore metadata like $type/$id</div>
             <div class="diff-line added">+ };</div>
-            <div class="diff-line added">+ var obj = JsonConvert.DeserializeObject&lt;SafeMessage&gt;(json, settings);</div>
+            <div class="diff-line added">+ var obj = JsonConvert.DeserializeObject&lt;SafeMessage&gt;(json, settings);
+            </div>
 
             <br />
             <button onclick="closeDiffPopup()">Close</button>
-    </div>
+        </div>
     </div>
 
     <h6 style="margin: 25px;">More Information:</h6>
     <ul>
         <li>
-            <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326">Microsoft - Newtonsoft.Json.TypeNameHandling</a>
+            <a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326">Microsoft
+                - Newtonsoft.Json.TypeNameHandling</a>
         </li>
         <li>
             <a href="https://portswigger.net/web-security/deserialization">Portswigger - Insecure Deserialization</a>
         </li>
         <li>
-            <a href="https://owasp.org/www-community/vulnerabilities/Insecure_Deserialization">OWASP - Insecure Deserialization</a>
+            <a href="https://owasp.org/www-community/vulnerabilities/Insecure_Deserialization">OWASP - Insecure
+                Deserialization</a>
         </li>
     </ul>
 
     <script>
         function sendNormalPayload() {
-        const payload = JSON.stringify({ "Message": "Hello from AspGoat!" });
+            const payload = JSON.stringify({"Message": "Hello from AspGoat!"});
 
-        fetch("/Home/InsecureDeserialization", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: payload
-        })
-        .then(r => r.json())
-        .then(d => {
-            document.getElementById("msg").textContent = d.message ?? "(null)";
-        })
-        .catch(err => console.error(err));
+            fetch("/Home/InsecureDeserialization", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: payload
+            })
+                .then(r => r.json())
+                .then(d => {
+                    document.getElementById("msg").textContent = d.message ?? "(null)";
+                })
+                .catch(err => console.error(err));
         }
     </script>
 
     <script src="~/js/indes.js"></script>
 </body>
+
 </html>
