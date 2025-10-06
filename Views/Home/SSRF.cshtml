@@ -1,14 +1,16 @@
 @{
-    ViewData["Title"] = "SSRF Demo";
+ViewData["Title"] = "SSRF Demo";
 }
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/app.css" />
 </head>
+
 <body>
 
     <h1 style="text-align: center; margin-bottom: 40px;">🧪 SSRF Demo</h1>
@@ -20,7 +22,7 @@
             <form method="POST" asp-controller="Home" asp-action="SSRF">
                 <label for="targetUrl">Fetch Url:</label>
                 <input type="url" name="targetUrl" id="targetUrl" required>
-                <br/>
+                <br />
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>
@@ -40,7 +42,7 @@
 
     <div style="text-align:center; margin-top:24px;">
         <h6>
-            Note: In real SSRF, attackers often target services on an internal/private IP.
+            Note: <strong>In real SSRF, attackers often target services on an internal/private IP.</strong>
             For simplicity, this lab hosts a mock internal API on the same server as AspGoat.
         </h6>
     </div>
@@ -55,7 +57,8 @@
             <a href="https://portswigger.net/web-security/ssrf">Portswigger - SSRF</a>
         </li>
         <li>
-            <a href="https://www.acunetix.com/blog/articles/server-side-request-forgery-vulnerability/">Acunetix - SSRF</a>
+            <a href="https://www.acunetix.com/blog/articles/server-side-request-forgery-vulnerability/">Acunetix -
+                SSRF</a>
         </li>
     </ul>
 
@@ -63,13 +66,20 @@
     <div id="codeModal" class="modal">
         <div class="modal-content">
             <h3>🔍 Analyze the Code</h3>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 1)"> public async Task&lt;IActionResult&gt; Fetch(string targetUrl)</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)"> {</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)"> &nbsp;&nbsp;using var http = new HttpClient();</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)"> &nbsp;&nbsp;var response = await http.GetStringAsync(targetUrl);</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)"> &nbsp;&nbsp;ViewData["Response"] = response;</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)"> &nbsp;&nbsp;return View();</div>
-            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)"> }</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 1)">
+                public async Task&lt;IActionResult&gt; Fetch(string targetUrl)</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 2)">
+                {</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 3)">
+                &nbsp;&nbsp;using var http = new HttpClient();</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 4)">
+                &nbsp;&nbsp;var response = await http.GetStringAsync(targetUrl);</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 5)">
+                &nbsp;&nbsp;ViewData["Response"] = response;</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 6)">
+                &nbsp;&nbsp;return View();</div>
+            <div class="popup-line"><input type="checkbox" class="code-checkbox" onchange="checkVulnerability(this, 7)">
+                }</div>
             <br />
             <button onclick="closeCodePopup()">Close</button>
         </div>
@@ -77,22 +87,23 @@
 
     <!-- Diff Modal -->
     <div id="diffModal" class="diff-modal">
-    <div class="diff-content">
-        <h3>✅ Secure Version</h3>
+        <div class="diff-content">
+            <h3>✅ Secure Version</h3>
 
-        <div class="diff-line removed">- var response = await http.GetStringAsync(targetUrl);</div>
+            <div class="diff-line removed">- var response = await http.GetStringAsync(targetUrl);</div>
 
-        <div class="diff-line added">+ // Create an allowlist of absolute urls</div>
-        <div class="diff-line added">+ var allowedUrls = new HashSet&lt;string&gt;(StringComparer.Ordinal)</div>
-        <div class="diff-line added">+ { "https://google.com", "https://facebook.com" };</div>
-        <div class="diff-line added">+ if (!allowedUrls.Contains(targetUrl)) return BadRequest("Blocked URL");</div>
-        <div class="diff-line added">+ var response = await http.GetStringAsync(targetUrl);</div>
+            <div class="diff-line added">+ // Create an allowlist of absolute urls</div>
+            <div class="diff-line added">+ var allowedUrls = new HashSet&lt;string&gt;(StringComparer.Ordinal)</div>
+            <div class="diff-line added">+ { "https://google.com", "https://facebook.com" };</div>
+            <div class="diff-line added">+ if (!allowedUrls.Contains(targetUrl)) return BadRequest("Blocked URL");</div>
+            <div class="diff-line added">+ var response = await http.GetStringAsync(targetUrl);</div>
 
-        <br />
-        <button onclick="closeDiffPopup()">Close</button>
-    </div>
+            <br />
+            <button onclick="closeDiffPopup()">Close</button>
+        </div>
     </div>
 
     <script src="~/js/ssrf.js"></script>
 </body>
+
 </html>
