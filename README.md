@@ -28,6 +28,9 @@
   <a href="https://hub.docker.com/r/sohamburger/aspgoat">
     <img src="https://img.shields.io/docker/pulls/sohamburger/aspgoat?style=flat-square&logo=docker" alt="docker pulls"/>
   </a>
+  <a href="https://owasp.org/">
+  <img src="https://img.shields.io/badge/OWASP-Project-purple" alt="OWASP">
+  </a>
 </p>
 
 ---
