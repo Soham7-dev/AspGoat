@@ -363,13 +363,6 @@ public class HomeController : Controller
         // Vulnerable as the targetUrl is not whitelisted
         using var http = new HttpClient();
 
-        // Create an allowlist of absolute urls
-        var allowedUrls = new HashSet<string>(StringComparer.Ordinal)
-        {
-            "https://google.com", "https://facebook.com"
-        };
-        if (!allowedUrls.Contains(targetUrl)) return BadRequest("Blocked URL");
-
         var response = await http.GetStringAsync(targetUrl);
         ViewData["Response"] = response;
 
