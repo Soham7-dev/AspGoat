@@ -360,9 +360,9 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> SSRF(string targetUrl)
     {
+        // Vulnerable as the targetUrl is not whitelisted
         using var http = new HttpClient();
 
-        // Vulnerable as the targetUrl is not whitelisted
         var response = await http.GetStringAsync(targetUrl);
         ViewData["Response"] = response;
 
