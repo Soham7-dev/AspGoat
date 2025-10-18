@@ -58,10 +58,15 @@
             color: #ff0000ff;
             margin-top: 10px;
         }
-
         .footer-link {
             margin-top: 40px;
             font-size: 13px;
+        }
+        .footer-link img {
+            transition: transform 0.2s ease;
+        }
+        .footer-link:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -92,8 +97,11 @@
         }
     </form>
 
-    <div class="footer-link">
-        <a href="https://owasp.org/www-project-aspgoat/" target="_blank">AspGoat — An OWASP Project</a>
+    <div class="footer-link" style="display: flex; align-items: center; gap: 6px;">
+        <a href="https://owasp.org/www-project-aspgoat/" target="_blank" style="text-decoration: none; color: inherit;">
+            AspGoat — An OWASP Project
+        </a>
+        <img src="/expand-arrows.png" alt="Link icon" style="width: 16px; height: 16px;"/>
     </div>
 
 </body>
