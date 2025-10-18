@@ -104,7 +104,7 @@ button {
 }
 .sendbtn {
     padding: 0 16px; border: none; border-radius: 10px; cursor: pointer;
-    background: #5a2a9c; color:#fff; font-weight: 600;
+    background: #CFE7FF; color:#fff; font-weight: 600;
     margin-top: 0 !important;
 }
 .sendbtn:disabled { opacity: .6; cursor: not-allowed; }
