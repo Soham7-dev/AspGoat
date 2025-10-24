@@ -16,6 +16,9 @@
   <a href="https://github.com/Soham7-dev/AspGoat/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Soham7-dev/AspGoat?style=flat-square&color=blue" alt="license"/>
   </a>
+  <a href="https://github.com/Soham7-dev/AspGoat/releases">
+    <img src="https://img.shields.io/github/v/release/Soham7-dev/AspGoat?style=flat-square" alt="release"/>
+  </a>
   <a href="https://github.com/Soham7-dev/AspGoat/stargazers">
     <img src="https://img.shields.io/github/stars/Soham7-dev/AspGoat?style=flat-square&color=yellow" alt="stars"/>
   </a>
@@ -28,11 +31,11 @@
   <a href="https://hub.docker.com/r/sohamburger/aspgoat">
     <img src="https://img.shields.io/docker/pulls/sohamburger/aspgoat?style=flat-square&logo=docker" alt="docker pulls"/>
   </a>
-  <a href="https://github.com/Soham7-dev/AspGoat/releases">
-    <img src="https://img.shields.io/github/v/release/Soham7-dev/AspGoat?style=flat-square" alt="release"/>
-  </a>
   <a href="https://owasp.org/">
   <img src="https://img.shields.io/badge/OWASP-Project-purple" alt="OWASP">
+  </a>
+  <a href="https://dotnet.microsoft.com/">
+    <img src="https://img.shields.io/badge/.NET-Core-512BD4?style=flat-square&logo=dotnet" alt=".NET Core"/>
   </a>
 </p>---
 
