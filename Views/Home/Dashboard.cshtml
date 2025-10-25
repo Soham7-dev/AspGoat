@@ -4,6 +4,13 @@
 <style>
     img.logo {
         width: 200px;
+        display: block;
+        margin: 0 auto 12px auto; /* center the logo on its own line */
+    }
+
+    .hero-title {
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 
     .sebtn {
@@ -18,15 +25,15 @@
 </style>
 
 <div class="text-center">
-    <h1 class="display-4">
-        <img src="/AspGoatLogo.png" class="logo"> Welcome to AspGoat
-    </h1>
-    <p class="lead">An intentionally vulnerable ASP.NET Core app for learning web security.</p>
+    <img src="~/AspGoatLogo.png" class="logo" alt="AspGoat logo" />
+    <h1 class="display-4 hero-title">Welcome to AspGoat</h1>
+    <p class="lead mb-2">An intentionally vulnerable ASP.NET Core app for learning web security.</p>
 
     <hr style="margin: 30px auto; width: 60%;" />
 
-    <div style="max-width: 700px; margin: auto; font-size: 1.05rem;">
+    <div class="text-start" style="max-width: 700px; margin: auto; font-size: 1.05rem;">
         <p><strong>Purpose:</strong> Practice finding and fixing common web vulnerabilities in a safe environment.</p>
+
 
         <p><strong>Includes:</strong></p>
         <ul class="text-start" style="margin-left: 20px;">

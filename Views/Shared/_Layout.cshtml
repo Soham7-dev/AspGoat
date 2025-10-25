@@ -9,12 +9,23 @@
     <title>@ViewData["Title"] - AspGoat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Fira+Code&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;600&family=Fira+Code&family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
         html, body {
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        code, pre, kbd, samp {
+            font-family: 'Fira Code', 'Source Code Pro', 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+            font-size: 0.95em;
         }
 
         .sidebar {
@@ -70,31 +81,104 @@
         .sidebar a:hover {
             background-color: #3b1ca6; /* darker hover */
         }
+
+        .sidebar a .nav-ico {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: -2px;
+            fill: #ffffff;
+            opacity: 0.9;
+        }
+
+        .sidebar a:hover .nav-ico {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>AspGoat</h2>
-        <a asp-controller="Home" asp-action="Dashboard"><i class="fas fa-home"></i> Home</a>
-        <a asp-controller="Home" asp-action="SqlInjection">🐞 Sql Injection</a>
-        <a asp-controller="Home" asp-action="BrokenAuthentication">🐞 Broken Authentication</a>
-        <a asp-controller="Home" asp-action="InformationDisclosure">🐞 Information Disclosure</a>
-        <a asp-controller="Home" asp-action="XXE">🐞 XML External Entities (XXE)</a>
-        <a asp-controller="Home" asp-action="InsecureDirectObjectReference">🐞 Insecure Direct Object Reference (IDOR)</a>
-        <a asp-controller="Home" asp-action="OpenRedirect">🐞 Open Redirect</a>
-        <a asp-controller="Home" asp-action="ReflectedXSS">🐞 Reflected XSS</a>
-        <a asp-controller="Home" asp-action="StoredXSS">🐞 Stored XSS</a>
-        <a asp-controller="Home" asp-action="DomXSS">🐞 DOM XSS</a>
-        <a asp-controller="Home" asp-action="InsecureDeserialization">🐞 Insecure Deserialization</a>
-        <a asp-controller="Home" asp-action="PrototypePollution">🐞 Prototype Pollution</a>
-        <a asp-controller="Home" asp-action="LFI">🐞 Local File Inclusion (LFI)</a>
-        <a asp-controller="Home" asp-action="FileUpload">🐞 Unrestricted File Upload (File Overwrite)</a>
-        <a asp-controller="Home" asp-action="CommandInjection">🐞 Command Injection (RCE)</a>
-        <a asp-controller="Home" asp-action="CSRF">🐞 Cross Site Request Forgery (CSRF)</a>
-        <a asp-controller="Home" asp-action="SSRF">🐞 Server Side Request Forgery (SSRF)</a>
-        <a asp-controller="Home" asp-action="CachePoisoning">🐞 Cache Poisoning</a>
-        <a asp-controller="Home" asp-action="SSTI">🐞 Server Side Template Injection (RCE)</a>
-        <a asp-controller="Home" asp-action="LLM_Vulnerabilities">🐞 AI / LLM Vulnerabilities</a>
+        <a asp-controller="Home" asp-action="Dashboard">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-6v-6h-4v6H4a1 1 0 0 1-1-1V10z"/></svg>
+            Home
+        </a>
+        <a asp-controller="Home" asp-action="SqlInjection">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Sql Injection
+        </a>
+        <a asp-controller="Home" asp-action="BrokenAuthentication">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Broken Authentication
+        </a>
+        <a asp-controller="Home" asp-action="InformationDisclosure">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Information Disclosure
+        </a>
+        <a asp-controller="Home" asp-action="XXE">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            XML External Entities (XXE)
+        </a>
+        <a asp-controller="Home" asp-action="InsecureDirectObjectReference">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Insecure Direct Object Reference (IDOR)
+        </a>
+        <a asp-controller="Home" asp-action="OpenRedirect">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Open Redirect
+        </a>
+        <a asp-controller="Home" asp-action="ReflectedXSS">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Reflected XSS
+        </a>
+        <a asp-controller="Home" asp-action="StoredXSS">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Stored XSS
+        </a>
+        <a asp-controller="Home" asp-action="DomXSS">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            DOM XSS
+        </a>
+        <a asp-controller="Home" asp-action="InsecureDeserialization">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Insecure Deserialization
+        </a>
+        <a asp-controller="Home" asp-action="PrototypePollution">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Prototype Pollution
+        </a>
+        <a asp-controller="Home" asp-action="LFI">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Local File Inclusion (LFI)
+        </a>
+        <a asp-controller="Home" asp-action="FileUpload">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM9 13h6v2H9zM11 7h2v6h-2z"/></svg>
+            Unrestricted File Upload (File Overwrite)
+        </a>
+        <a asp-controller="Home" asp-action="CommandInjection">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM6 9h5v2H6zM6 13h8v2H6z"/></svg>
+            Command Injection (RCE)
+        </a>
+        <a asp-controller="Home" asp-action="CSRF">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Cross Site Request Forgery (CSRF)
+        </a>
+        <a asp-controller="Home" asp-action="SSRF">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Server Side Request Forgery (SSRF)
+        </a>
+        <a asp-controller="Home" asp-action="CachePoisoning">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Cache Poisoning
+        </a>
+        <a asp-controller="Home" asp-action="SSTI">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            Server Side Template Injection (RCE)
+        </a>
+        <a asp-controller="Home" asp-action="LLM_Vulnerabilities">
+            <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v5c0 5-4 8-9 10C7 20 3 17 3 12V7l9-5z"/></svg>
+            AI / LLM Vulnerabilities
+        </a>
     </div>
 
     <div class="topbar">
