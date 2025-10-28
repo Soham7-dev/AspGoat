@@ -37,6 +37,12 @@
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-Core-512BD4?style=flat-square&logo=dotnet" alt=".NET Core"/>
   </a>
+   <a href="https://portswigger.net/burp" target="_blank" rel="noopener">
+  <img
+    src="https://img.shields.io/badge/burpsuite-proxy-000000?style=flat-square&logo=burpsuite&logoColor=white&labelColor=FF6633"
+    alt="BurpSuite Proxy Badge"
+  />
+  </a>
 </p>---
 
 ## 📖 About AspGoat
